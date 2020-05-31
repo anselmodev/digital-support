@@ -37,25 +37,32 @@
           <p>Suporte Digital</p>
           <img src="./assets/img/logo-text-purple.png" alt="Suporte Digital" title="Suporte Digital">
         </h1>
-        <p class="login-box-label">Login</p>
+        <p class="login-box-label">Recuperar Acesso</p>
       </header>
 
-      <form class="login-form" action="home.html" method="post">
+      <form class="login-form" action="set-pass.html" method="post">
 
         <div class="form-group login-form-group">
-          <label class="label-form" for="exampleInputEmail1">E-mail</label>
+          <label class="label-form" for="exampleInputEmail1">E-mail de cadastro</label>
           <input type="email" class="form-control" placeholder="Digite ..." id="login-input-email"
             aria-describedby="emailHelp">
         </div>
 
-        <div class="form-group login-form-group">
-          <label class="label-form" for="exampleInputPassword1">Senha</label>
-          <input type="password" class="form-control" placeholder="Digite ..." id="login-input-password">
-        </div>
+        <p class="login-tips">
+          <em>
+            Um link para recuperação de senha <br />
+            será enviado para seu e-mail!
+          </em>
+        </p>
 
         <div class="login-buttons">
-          <a href="recover-access.html" id="btn-recover" class="btn btn-link" role="button">Esqueci a Senha</a>
-          <button id="btn-login" type="submit" class="btn btn-primary">ENTRAR</button>
+          <a href="index.html" class="btn btn-link" role="button">
+            <i data-feather="arrow-left" width="15"></i>
+            Login
+          </a>
+          <button id="btn-recover" type="submit" class="btn btn-primary">
+            RECUPERAR ACESSO
+          </button>
         </div>
       </form>
     </section>

@@ -166,12 +166,20 @@ body {
   opacity: 0.7;
 }
 
+/* RECOVER ACCESS */
+.login-tips {
+  text-align: center;
+  font-size: 12px;
+  color: #A358BC;
+  padding: 10px;
+}
+
 
 
 /* Bootstrap theme replace */
 .btn {
   border-radius: 26rem;
-  padding: .375rem 2.55rem;
+  padding: .375rem 1.75rem;
   font-size: 0.8rem;
   font-weight: 400;
 }
@@ -206,7 +214,7 @@ body {
 .btn-link {
   color: #51569A;
   padding: 0 10px;
-
+  line-height: 30px;
 }
 
 .btn-link:hover {
