@@ -6,7 +6,7 @@ feather.replace();
 if (localStorage.getItem('home') !== 'logged') {
 
   // redirecionar para a o login se não estiver logado
-  window.location.href = "./";
+  window.location.replace = "./";
 }
 
 // global index chamado

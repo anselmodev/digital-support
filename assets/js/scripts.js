@@ -38,12 +38,9 @@ $('#btn-login').click(function () {
 
   // efetuar login
   setLogin(true);
-});
 
-$('#btn-logout').click(function () {
-  setLogin(false);
-
-  // redirecionar para o login
+  // Redireciona para a home
+  window.location.href = "./home.html";
 });
 
 
@@ -51,10 +48,12 @@ $('#btn-logout').click(function () {
 $('#btn-recover').click(function () {
   const getMail = $('#login-input-email').val();
 
-  if (!getMail.length || !getPass.length) {
+  if (!getMail.length) {
     alert('Atenção! É obrigatório o preenchimento de E-MAIL para recuperar o acesso!')
     return false;
   }
+
+  window.location.href = "./set-pass.html";
 });
 
 
@@ -82,4 +81,6 @@ $('#btn-setpass').click(function () {
     alert('Atenção! As senhas devem ser iguais!');
     return false;
   }
+
+  window.location.href = "./";
 });
