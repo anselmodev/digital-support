@@ -175,67 +175,6 @@ body {
 }
 
 
-
-/* Bootstrap theme replace */
-.btn {
-  border-radius: 26rem;
-  padding: .375rem 1.75rem;
-  font-size: 0.8rem;
-  font-weight: 400;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #51569A;
-  border-color: #51569A;
-}
-
-.btn-primary:hover {
-  background-color: #35397e;
-  border-color: #35397e;
-}
-
-.btn-primary:not(:disabled):not(.disabled).active,
-.btn-primary:not(:disabled):not(.disabled):active,
-.show>.btn-primary.dropdown-toggle {
-  color: #fff;
-  background-color: #35397e;
-  border-color: #35397e;
-}
-
-.btn-primary.focus,
-.btn-primary:focus {
-  color: #fff;
-  background-color: #35397e;
-  border-color: #35397e;
-  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, .5);
-}
-
-.btn-link {
-  color: #51569A;
-  padding: 0 10px;
-  line-height: 30px;
-}
-
-.btn-link:hover {
-  color: #35397e;
-}
-
-.form-control {
-  padding: .375rem .75rem;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  border: 1px solid rgba(82, 86, 154, 0.3);
-  border-radius: 10.25rem;
-}
-
-.form-control::placeholder {
-  color: #707070;
-  opacity: 0.2;
-}
-
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {}
 

@@ -4,9 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="robots" content="noindex" /> <!-- Não ser indexado em buscadores -->
 
+  <!-- Bootstrap style -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Local styles -->
+  <link rel="stylesheet" href="./assets/css/bootstrap-replace.css">
   <link rel="stylesheet" href="./assets/css/styles.css">
 
   <title>Suporte Digital</title>
@@ -40,26 +45,26 @@
         <p class="login-box-label">Definição de Senha</p>
       </header>
 
-      <form class="login-form" action="home.html" method="post">
+      <form class="login-form" action="./" method="post">
 
         <div class="form-group login-form-group">
           <label class="label-form">Nova senha</label>
-          <input type="password" class="form-control" placeholder="Digite ..." id="login-input-email"
+          <input type="password" class="form-control" placeholder="Digite ..." id="login-input-password"
             aria-describedby="newpass">
         </div>
 
         <div class="form-group login-form-group">
           <label class="label-form">Repita nova senha</label>
-          <input type="password" class="form-control" placeholder="Digite ..." id="login-input-password"
+          <input type="password" class="form-control" placeholder="Digite ..." id="login-input-password-repeat"
             aria-describedby="repeat-newpass">
         </div>
 
         <div class="login-buttons">
-          <a href="index.html" class="btn btn-link" role="button">
+          <a href="./" class="btn btn-link" role="button">
             <i data-feather="arrow-left" width="15"></i>
             Login
           </a>
-          <button id="btn-login" id="btn-setpass" class="btn btn-primary">Definir</button>
+          <button id="btn-setpass" class="btn btn-primary">Definir</button>
         </div>
       </form>
     </section>

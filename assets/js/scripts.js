@@ -1,14 +1,85 @@
-// PACOTE DE ÍCONES UTILIZADO
+/* ######### PACOTE DE ÍCONES UTILIZADO ######### */
 // https://github.com/feathericons/feather#feather
 feather.replace();
 
-// VALIDAÇAÕ DE LOGIN
-$('#btn-login').click(function(){
-  alert('Erro')
-  return false;
-})
+/* ########## LOCALSTORAGE PARA SIMULAR LOGIN ######### */
+if (localStorage.getItem('home') === 'logged') {
 
-// VALIDAÇÃO DE E-MAIL PARA RECUPERAÇÃO DE SENHA
+  // redirecionar para a home se estiver logado
+  window.location.href = "./home.html";
+}
 
-// VALIDAÇÃO DE NOVA SENHA
+/* ########## Função para definir o login ######### */
+function setLogin(login) {
+  // Se login for verdadeiro
+  if (!!login) {
+    localStorage.setItem('home', 'logged');
+  }
+};
 
+
+/* ########## VALIDAÇAÕ, LOGIN e LOGOUT ######### */
+// ação de submit do login
+$('#btn-login').click(function () {
+  const getMail = $('#login-input-email').val();
+  const getPass = $('#login-input-password').val();
+
+  // se não preencher campos
+  if (!getMail.length || !getPass.length) {
+    alert('Atenção! É obrigatório o preenchimento de E-MAIL e SENHA!')
+    return false;
+  }
+
+  // se a senha não possuir o mínimo de 6 caracteres
+  if (getPass.length < 6) {
+    alert('Atenção! A SENHA deve possuir o mínimo de 6 caracteres!')
+    return false;
+  }
+
+  // efetuar login
+  setLogin(true);
+});
+
+$('#btn-logout').click(function () {
+  setLogin(false);
+
+  // redirecionar para o login
+});
+
+
+/* ########## VALIDAÇÃO DE E-MAIL PARA RECUPERAÇÃO DE SENHA ######### */
+$('#btn-recover').click(function () {
+  const getMail = $('#login-input-email').val();
+
+  if (!getMail.length || !getPass.length) {
+    alert('Atenção! É obrigatório o preenchimento de E-MAIL para recuperar o acesso!')
+    return false;
+  }
+});
+
+
+/* ########## VALIDAÇÃO DE NOVA SENHA ######### */
+$('#btn-setpass').click(function () {
+  const getPass = $('#login-input-password').val();
+  const getRepeatPass = $('#login-input-password-repeat').val();
+
+
+  // se campos vazios
+  if (!getRepeatPass.length || !getPass.length) {
+    alert('Atenção! É obrigatório o preenchimento das senhas!');
+    return false;
+  }
+
+
+  // se senha possuir menos que 6 caracteres
+  if (getPass.length < 6) {
+    alert('Atenção! A SENHA deve possuir o mínimo de 6 caracteres!');
+    return false;
+  }
+
+  // se senhas não forem iguais
+  if (getRepeatPass.length !== getPass.length) {
+    alert('Atenção! As senhas devem ser iguais!');
+    return false;
+  }
+});
