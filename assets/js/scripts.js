@@ -17,7 +17,6 @@ function setLogin(login) {
   }
 };
 
-
 /* ########## VALIDAÇAÕ, LOGIN e LOGOUT ######### */
 // ação de submit do login
 $('#btn-login').click(function () {

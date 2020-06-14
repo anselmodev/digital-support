@@ -60,6 +60,8 @@
           <div class="dropdown-menu home-user-menu" aria-labelledby="dropdownMenuLink">
             <a id="user-profile" class="dropdown-item disabled">Usuário: <b>Silvia Alencar</b></a>
             <div class="dropdown-divider"></div>
+            <a id="user-register" class="dropdown-item">Cadastros de Usuários</b></a>
+            <div class="dropdown-divider"></div>
             <a id="user-logout" class="dropdown-item">Sair</a>
           </div>
         </div>
@@ -92,7 +94,7 @@
         </div>
       </div>
 
-      <!-- result search and new ticket button -->
+      <!-- new ticket button -->
       <div class="result-search">
         <button id="btn-new-ticket" type="submit" class="btn btn-primary">
           NOVO CHAMADO
@@ -100,7 +102,7 @@
         <p></p>
       </div>
 
-      <!-- modal form -->
+      <!-- modal form tickets -->
       <div class="modal fade" id="modalTicket" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -153,6 +155,66 @@
 
               <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
               <button type="button" class="btn btn-primary" id="save-ticket">SALVAR</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- modal register user -->
+      <div class="modal fade" id="modalUser" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Usuários do Sistema</h5>
+              <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </a>
+            </div>
+
+            <!-- modal form content -->
+            <div class="modal-body">
+              <form class="modal-form">
+                <div class="form-group">
+                  <label class="label-form" for="userName">Nome Completo</label>
+                  <input type="text" class="form-control" id="userName" placeholder="Digite ...">
+                </div>
+                <div class="form-group">
+                  <label class="label-form" for="userEmail">E-mail</label>
+                  <input type="email" class="form-control" id="userEmail" placeholder="Digite ...">
+                </div>
+                <div class="form-group pass-user">
+                  <label class="label-form" for="userPass">Definir Senha</label>
+                  <input type="password" class="form-control" id="userPass" placeholder="Digite ...">
+                  <a class="btn-eye" id="show-hide-pass">
+                    <i data-feather="eye" width="35" color="#A358BC" id="eye-show"></i>
+                    <i data-feather="eye-off" width="35" color="#A358BC" id="eye-hide"></i>
+                  </a>
+                </div>
+              </form>
+
+              <div class="list-users">
+                <table class="table table-list">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Editar</th>
+                    </tr>
+                  </thead>
+                  <tbody id="list-items-users"></tbody>
+                </table>
+              </div>
+
+              <p class="success-save" id="success-alert">
+                <span class="badge badge-success">
+                </span>
+              </p>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+              <button type="button" class="btn btn-outline-secondary" id="new-user">NOVO</button>
+              <button type="button" class="btn btn-primary" id="save-user">SALVAR</button>
             </div>
           </div>
         </div>

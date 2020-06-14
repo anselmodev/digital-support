@@ -9,10 +9,15 @@ if (localStorage.getItem('home') !== 'logged') {
   window.location.replace = "./";
 }
 
-// global index chamado
+// global index chamado e usuario
 var indexTicket;
+var indexUser;
 
-/* ########## BANCO DE DADOS SIMULADO (objeto) ######### */
+// visualização de senha do usuário
+var showPassUser = false;
+
+/* ########## BANCO DE DADOS SIMULADO (objeto javascript) ######### */
+// lista de chamados
 var DATA_BASE_SIMULATION = [
   {
     id: 'item-1',
@@ -98,6 +103,32 @@ var DATA_BASE_SIMULATION = [
   }
 ];
 
+// lista de usuários
+var DATA_BASE_SIMULATION_USERS = [
+  {
+    id: 'user-1',
+    name: 'Silvia Alencar',
+    email: 'silvia-al@meuemail.com.br',
+    password: '123456789'
+  }
+];
+
+/* VALIDAR E-MAIL */
+function validateEmail(mail) {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+    return true;
+  }
+  return false;
+}
+
+/* VALIDAR SENHA */
+function checkPassword(str) {
+  // pelo menos um número, uma letra minúscula e uma letra maiúscula
+  // mínimo de 6 caracteres
+  var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  return re.test(str);
+}
+
 /* ########## FAZER LOGOUT - SAIR DO SISTEMA ######### */
 $('#user-logout').click(function () {
   // limpa dados do login no browser
@@ -164,7 +195,7 @@ getResumeAttendance();
 getResumeFinalized();
 
 
-/* ########## PREPARA E EXIBE LISTA OS ÍTENS NA HOME ######### */
+/* ########## PREPARA E EXIBE LISTA DE CHAMADOS NA HOME ######### */
 function setList(updated) {
 
   // se for atualizar lista, apaga a anterior
@@ -338,9 +369,9 @@ function setInteraction() {
   getResumeFinalized();
 
   // se existir mensagem no campo NOVA INTERAÇÃO
-  if (getReport.length) { 
+  if (getReport.length) {
     DATA_BASE_SIMULATION[indexTicket].reportInfo.unshift(dataInteraction);
-    
+
     $('#interaction').prepend(
       '<p>DATA: <b>' + dataInteraction.date + '</b></p>' +
       '<p class="text-interacion">' + dataInteraction.message + '</p>'
@@ -351,13 +382,98 @@ function setInteraction() {
   $("#report").val('');
 
   // se o chamado for finalizado, fechar o modal ao salvar
-  if(Number(getStatus) === 2) {
+  if (Number(getStatus) === 2) {
     $('#modalTicket').modal('hide');
   } else {
     successAlert('Chamado Atualizado com Sucesso');
   }
 
 }
+
+/* ########## PREPARA E EXIBE LISTA DE USUÁRIOS NO MODAL DE CADASTRO ######### */
+function setListUsers(updated) {
+  // se for atualizar lista, apaga a anterior
+  if (!!updated) {
+    $('#list-items-users').html('');
+  }
+
+  // percorre a lista para inserir as linhas em: <tbody id="list-items">
+  DATA_BASE_SIMULATION_USERS.map(function (item, index) {
+    $('#list-items-users').append(
+      '<tr>' +
+      '<td class="name-user">' + item.name + '</td>' +
+      '<td>' +
+      '<a class="list-edit-item user-item" id="' + item.id + '" data-index="' + index + '">' +
+      `
+            <svg xmlns="http://www.w3.org/2000/svg" 
+              xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 25 25">
+              <defs>
+                <style>.a{clip-path:url(#b);}.b{fill:none;stroke:#a358bc;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}.c{fill:transparent;}</style>
+                <clipPath id="b">
+                  <rect width="25" height="25"/>
+                </clipPath>
+              </defs>
+              <g id="a" class="a">
+                <rect class="c" width="25" height="25"/>
+                <g transform="translate(-1.598 -1.416)">
+                  <path class="b" d="M13.029,6h-7.8A2.229,2.229,0,0,0,3,8.229v15.6a2.229,2.229,0,0,0,2.229,2.229h15.6a2.229,2.229,0,0,0,2.229-2.229v-7.8" transform="translate(0 -1.044)"/>
+                  <path class="b" d="M22.583,3.444a2.138,2.138,0,0,1,3.024,3.024l-9.575,9.575L12,17.051l1.008-4.032Z" transform="translate(-1.037)"/>
+                </g>
+              </g>
+            </svg>
+            `+
+      '</a>' +
+      '</td>' +
+      '</tr>'
+    );
+  });
+
+  // click abrir chamado por ID/INDEX
+  $('.user-item').click(function () {
+    // limpa o campo password se estiver preenchido
+    $('#userPass').val('');
+
+    // Pega o INDEX do item da lista ( baseado no DATA_BASE_SIMULATION)
+    var getIndex = $(this).attr('data-index');
+
+    // preenche dados do usuário no form para edição
+    var getUser = DATA_BASE_SIMULATION_USERS[getIndex];
+
+    // define index do usuario
+    indexUser = getIndex;
+
+    $('#userName').val(getUser.name);
+    $('#userEmail').val(getUser.email);
+  });
+}
+setListUsers();
+
+$('#show-hide-pass').click(function () {
+  if (!showPassUser) {
+    // define o tipo do input password
+    showPassUser = true;
+
+    // muda o tipo de input "password" para "text"
+    $('#userPass').attr('type', 'text');
+
+    // muda o tipo de ícone
+    $('#eye-hide').hide();
+    $('#eye-show').show();
+
+  } else {
+    // define o tipo do input password
+    showPassUser = false;
+
+    // muda o tipo de input "text" para "password"
+    $('#userPass').attr('type', 'password');
+
+    // muda o tipo de ícone
+    $('#eye-hide').show();
+    $('#eye-show').hide();
+
+  }
+
+});
 
 /* ########## MODAL ######### */
 // click novo chamado
@@ -391,5 +507,91 @@ $('#save-ticket').click(function () {
   } else {
     setItcket();
   }
+
+});
+
+// abrir modal cadastro de usuários
+$('#user-register, #new-user').click(function () {
+  // limpa últimas infos do form e index
+  indexUser = undefined;
+
+  $('#userName').val('');
+  $('#userEmail').val('');
+  $('#userPass').val('');
+
+  // Abre o modal
+  $('#modalUser').modal('show');
+
+  // resetar o input password
+  showPassUser = false;
+  $('#userPass').attr('type', 'password');
+  $('#eye-hide').show();
+  $('#eye-show').hide();
+
+
+  // valida o ID do elemento "#new-user" clicado para dar o foco no input name quando NOVO
+  if ($(this).attr('id') === 'new-user') {
+    $('#userName').focus();
+  }
+});
+
+
+// salvar/atualizar usuário
+$('#save-user').click(function () {
+  // dados do usuário vindo do form
+  var userName = $('#userName').val();
+  var userEmail = $('#userEmail').val();
+  var userPass = $('#userPass').val();
+
+  // verifica campos vazios
+  if (!userName.length || !userEmail.length) {
+    alert("É obrigatório preencher todos os dados do usuário!");
+    return false;
+  }
+
+  // valida email
+  if (!validateEmail(userEmail)) {
+    alert("O e-mail digitado não é válido!");
+    return false;
+  }
+
+  // valida senha (mínimo de 6 caracteres com maiúsculas, minúsculas e números)
+  if (userPass.length && !checkPassword(userPass)) {
+    alert("A senha de possuir ao menos 6 caracteres entre maiúsculas, minúsculas e números!");
+    return false;
+  }
+
+  // salvar usuário editado se houver o INDEX
+  if (indexUser !== undefined) {
+
+    DATA_BASE_SIMULATION_USERS[indexUser].name = userName;
+    DATA_BASE_SIMULATION_USERS[indexUser].email = userEmail;
+
+    // se a senha foi preenchida para alteração
+    if (userPass.length) {
+      DATA_BASE_SIMULATION_USERS[indexUser].password = userName;
+    }
+
+  }
+
+  // salvar novo usuário
+  else {
+
+    DATA_BASE_SIMULATION_USERS.unshift({
+      id: 'user-' + randomNumber(),
+      name: userName,
+      email: userEmail,
+      password: userPass
+    });
+
+    // Limpar form
+    $('#userName').val('');
+    $('#userEmail').val('');
+    $('#userPass').val('');
+
+  }
+
+  // atualiza a lista de usuários e reseta o form
+  setListUsers(true);
 
 });

@@ -250,7 +250,7 @@ body {
   display: none;
 }
 
-/* list */
+/* list tickets */
 .ticket-list {
   width: 100%;
   display: flex;
@@ -308,7 +308,7 @@ body {
 }
 
 
-/* modal form content */
+/* modal form ticket content */
 .protocol-number {
   width: 80%;
   font-weight: bold;
@@ -342,6 +342,30 @@ body {
 .statusOff {
   color: #53c97c;
 }
+
+/* modal users */
+.list-users {
+
+}
+.name-user {
+  width: 350px;
+}
+.pass-user {
+  position: relative;
+}
+.btn-eye {
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  cursor: pointer;
+}
+.btn-eye:hover {
+  opacity: 0.7;
+}
+#eye-show {
+  display: none;
+}
+
 
 /* FOOTER */
 .footer {
